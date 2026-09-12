@@ -7,18 +7,18 @@ capture history with hash-chained manifest records whose integrity proofs
 are **OpenTimestamps proofs anchored in the Bitcoin blockchain**. This
 repository holds, for every chain record (a "meta"):
 
-- `log/<name>.sha256` — the SHA-256 of the meta record's exact bytes
-- `proofs/<name>.ots` — the OpenTimestamps proof committing to that hash
+- `log/<name>.sha256`: the SHA-256 of the meta record's exact bytes
+- `proofs/<name>.ots`: the OpenTimestamps proof committing to that hash
 
-Nothing else. No page content, no manifests, no counts — commitments only.
+Nothing else. No page content, no manifests, no counts: commitments only.
 
 ## What this gives you
 
 Custody separation. The hashes live in a git history on infrastructure
 Bixel does not control retroactively: once a commitment is logged here,
 Bixel could not later rewrite that record without the mismatch being
-visible to anyone. Updated automatically after each export run
-(Mondays and Thursdays); `.ots` files are re-committed when their pending
+visible to anyone. Updated automatically after every export run
+(currently daily, shortly after the export); `.ots` files are re-committed when their pending
 calendar attestations upgrade to Bitcoin-attested.
 
 ## How to use it
@@ -37,7 +37,7 @@ sha256(base64decode(bundle.anchor.meta_b64))
 four-step verification (content, merkle inclusion, chain, Bitcoin anchor);
 this log is the independent copy of the commitments it checks against.
 
-A passing check proves the record existed as-committed — it never proves
+A passing check proves the record existed as-committed. It never proves
 Bixel's extraction of a page is correct. The raw bytes travel with proofs
 precisely so you can read the source yourself.
 
